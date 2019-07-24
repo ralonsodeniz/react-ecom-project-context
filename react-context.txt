@@ -1,0 +1,23 @@
+- Context API is the solution native to react to do something like redux does
+- The context api is a way to store different states and modify them inside a separate context object which we will able to hook into components at any level
+    · this eliminates de props drilling problem
+    · this is more o less what redux does
+- We are creating a new folder inside src called contexts
+    · In this directory we are creating our context files as well as the folders that represents what they are
+- We have two components in the ContextContainer, one is Consumer and the other Provider
+    · for consumer, to just use the content of the context we have useContext hook that makes easier to use this functionality
+        * check collection.component.jsx
+    · for provider, to access dynamically changing values, we dont have an easy way
+        * check App.js code
+    · the way those two components works is that cosumer goes up in the component parent tree looking for a provider, to get the most actual value, but if it does not find any provider it just uses the initial value
+    · so this means is important that the provider wraps the components, or the parent components, that are going to use a certain context
+- Context API is just an easy way to pass around the values of the state into components nested deeply
+    · The parent component is still going to be the one that mounts first and performs the updates
+    · we are solving props drilling but we cannot update the context in a lower step of the tree just where the provider is
+- Context is a lightweight solution when it comes to local store management vs redux which is very opinionated of how it should be setted up
+    · the cons is that we trade the flexibility of redux ecosystem
+        * we lose sagas and thunks ( a way to handle async actions inside redux middlewares)
+        * persistent 
+        * we lose the reusability of components when we thigtly couple them to the context api while with redux we just have to change the selectors of the mapsStateToProps or the actions inside mapDispatchToProps to get what the component need from another place, and those functions are outside the component itself
+- In large and complex applications we may want to use redux since its ecosystem is great an it gives you so much power and flexibility, async event handling, reusing components...
+- If the application is small and does not need so mucho reusability and complexity maybe context api is ok
